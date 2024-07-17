@@ -4,8 +4,10 @@ import 'package:employee_insight/presentation/auth/login_screen.dart';
 import 'package:employee_insight/presentation/auth/sign_up_screen.dart';
 import 'package:employee_insight/presentation/home/home_screen.dart';
 import 'package:employee_insight/presentation/home/leave/leave_details_screen.dart';
+import 'package:employee_insight/presentation/home/profile/profile_screen.dart';
 import 'package:employee_insight/presentation/home/salary/salary_details_screen.dart';
 import 'package:employee_insight/presentation/offline/offline_screen.dart';
+import 'package:employee_insight/presentation/splash/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_offline/flutter_offline.dart';
 
@@ -30,20 +32,24 @@ class AppRoutes {  Route generateRoute(RouteSettings routeSettings) {
   Widget getScreen(RouteSettings routeSettings) {
     switch (routeSettings.name) {
       case RouteConstants.signUpPath:
-        return SignUpScreen();
+        return const SignUpScreen();
       case RouteConstants.loginPath:
-        return LoginScreen();
+        return const LoginScreen();
       case RouteConstants.changePasswordPath:
-        return ChangePasswordScreen();
+        return const ChangePasswordScreen();
       case RouteConstants.homePath:
-        return HomeScreen();
+        return const HomeScreen();
       case RouteConstants.leaveDetailsPath:
-        return LeaveDetailsScreen();
+        return const LeaveDetailsScreen();
       case RouteConstants.salaryDetailsPath:
-        return SalaryDetailsScreen();
+        return const SalaryDetailsScreen();
+      case RouteConstants.profilePath:
+        return ProfileScreen();
+      case RouteConstants.splashPath:
+        return const SplashScreen();
 
       default:
-        return SignUpScreen();
+        return const SplashScreen();
     }
   }
 }
