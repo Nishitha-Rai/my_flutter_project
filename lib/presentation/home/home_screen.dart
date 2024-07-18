@@ -12,7 +12,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final employeeCardText = Theme.of(context)
         .textTheme
-        .headlineLarge
+        .headlineMedium
         ?.copyWith(fontWeight: FontWeight.w600);
 
     return AppScaffold(

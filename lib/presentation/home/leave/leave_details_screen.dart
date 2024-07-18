@@ -301,12 +301,12 @@ class LeaveDetailsScreenState extends State<LeaveDetailsScreen> {
         ),
       ),
       child: Padding(
-        padding: const EdgeInsets.all(18.0),
+        padding: const EdgeInsets.all(14.0),
         child: Column(
           children: [
             Text(
               leaveType,
-              style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+              style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                 color: AppColor.colorWhite,
                 fontWeight: FontWeight.bold,
               ),
@@ -314,7 +314,7 @@ class LeaveDetailsScreenState extends State<LeaveDetailsScreen> {
             const SizedBox(height: 8),
             Text(
               leaveCount.toString(),
-              style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+              style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                 color: AppColor.colorWhite,
                 fontWeight: FontWeight.bold,
               ),
@@ -328,7 +328,7 @@ class LeaveDetailsScreenState extends State<LeaveDetailsScreen> {
   Widget _buildEmployeeInfoCard() {
     var userBox = Hive.box<User>('users');
 
-    final cardTextStyle = Theme.of(context).textTheme.headlineLarge?.copyWith(
+    final cardTextStyle = Theme.of(context).textTheme.headlineMedium?.copyWith(
       fontWeight: FontWeight.w500,
     );
 
@@ -372,7 +372,7 @@ class LeaveDetailsScreenState extends State<LeaveDetailsScreen> {
   }
 
   Widget _buildLeaveDetailsCard() {
-    final leaveTextStyle = Theme.of(context).textTheme.headlineMedium?.copyWith(
+    final leaveTextStyle = Theme.of(context).textTheme.headlineSmall?.copyWith(
       fontWeight: FontWeight.w500,
     );
 

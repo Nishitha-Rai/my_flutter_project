@@ -98,7 +98,7 @@ class SalaryDetailsScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 20),
                     Padding(
-                      padding: const EdgeInsets.only(left: 210),
+                      padding: const EdgeInsets.only(left: 200),
                       child: GestureDetector(
                           onTap: () async {
                             final pdfFile = await generatePDF(
