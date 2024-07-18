@@ -13,43 +13,43 @@ import 'package:flutter_offline/flutter_offline.dart';
 
 class AppRoutes {  Route generateRoute(RouteSettings routeSettings) {
 
-    return MaterialPageRoute(
-        builder: (_) => OfflineBuilder(
-              connectivityBuilder: (BuildContext context,
-                  ConnectivityResult connectivityResult, Widget child) {
-                final bool connected =
-                    connectivityResult != ConnectivityResult.none;
-                if (!connected) {
-                  return const OfflineScreen();
-                }
-                return getScreen(routeSettings);
-              },
-              child: const SizedBox.shrink(),
-            ),
-        settings: routeSettings);
-  }
+  return MaterialPageRoute(
+      builder: (_) => OfflineBuilder(
+        connectivityBuilder: (BuildContext context,
+            ConnectivityResult connectivityResult, Widget child) {
+          final bool connected =
+              connectivityResult != ConnectivityResult.none;
+          if (!connected) {
+            return const OfflineScreen();
+          }
+          return getScreen(routeSettings);
+        },
+        child: const SizedBox.shrink(),
+      ),
+      settings: routeSettings);
+}
 
-  Widget getScreen(RouteSettings routeSettings) {
-    switch (routeSettings.name) {
-      case RouteConstants.signUpPath:
-        return const SignUpScreen();
-      case RouteConstants.loginPath:
-        return const LoginScreen();
-      case RouteConstants.changePasswordPath:
-        return const ChangePasswordScreen();
-      case RouteConstants.homePath:
-        return const HomeScreen();
-      case RouteConstants.leaveDetailsPath:
-        return const LeaveDetailsScreen();
-      case RouteConstants.salaryDetailsPath:
-        return const SalaryDetailsScreen();
-      case RouteConstants.profilePath:
-        return ProfileScreen();
-      case RouteConstants.splashPath:
-        return const SplashScreen();
+Widget getScreen(RouteSettings routeSettings) {
+  switch (routeSettings.name) {
+    case RouteConstants.signUpPath:
+      return const SignUpScreen();
+    case RouteConstants.loginPath:
+      return const LoginScreen();
+    case RouteConstants.changePasswordPath:
+      return const ChangePasswordScreen();
+    case RouteConstants.homePath:
+      return const HomeScreen();
+    case RouteConstants.leaveDetailsPath:
+      return const LeaveDetailsScreen();
+    case RouteConstants.salaryDetailsPath:
+      return const SalaryDetailsScreen();
+    case RouteConstants.profilePath:
+      return ProfileScreen();
+    case RouteConstants.splashPath:
+      return const SplashScreen();
 
-      default:
-        return const SplashScreen();
-    }
+    default:
+      return const SplashScreen();
   }
+}
 }

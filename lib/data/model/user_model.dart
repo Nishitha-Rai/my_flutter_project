@@ -10,22 +10,19 @@ class User {
   @HiveField(1)
   String lastName;
 
-  @HiveField(2)
-  String phone;
 
-  @HiveField(3)
+  @HiveField(2)
   String email;
 
-  @HiveField(4)
+  @HiveField(3)
   String employeeId;
 
-  @HiveField(5)
+  @HiveField(4)
   String password;
 
   User({
     required this.firstName,
     required this.lastName,
-    required this.phone,
     required this.email,
     required this.employeeId,
     required this.password,

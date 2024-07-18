@@ -1,8 +1,10 @@
+import 'package:employee_insight/constants/image_constants.dart';
 import 'package:employee_insight/constants/string_constants.dart';
 import 'package:employee_insight/presentation/home/salary/pdf_view_screen.dart';
 import 'package:employee_insight/presentation/widgets/app_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:employee_insight/presentation/theme/app_color.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:path_provider/path_provider.dart';
 import 'dart:io';
 import 'package:pdf/widgets.dart' as pw;
@@ -21,12 +23,23 @@ class SalaryDetailsScreen extends StatelessWidget {
     final totalSalary =
         housingAllowance + transportAllowance + otherAllowance + basicSalary;
 
+    final salaryTextStyle = Theme.of(context).textTheme.titleLarge;
+
     return AppScaffold(
       titleText: StringConstants.salaryDetails,
+      showBackArrow: true,
       scaffoldBody: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: <Widget>[
+            SizedBox(
+              height: 0.3.sh,
+              width: 0.6.sw,
+              child: Image.asset(
+                ImageConstants.salaryGif,
+                fit: BoxFit.contain,
+              ),
+            ),
             Card(
               elevation: 4,
               shape: RoundedRectangleBorder(
@@ -40,78 +53,83 @@ class SalaryDetailsScreen extends StatelessWidget {
                     Text(
                       StringConstants.salaryBreakDown,
                       style:
-                          Theme.of(context).textTheme.headlineMedium?.copyWith(
-                                color: AppColor.primaryColor,
-                                fontWeight: FontWeight.bold,
-                              ),
+                      Theme.of(context).textTheme.headlineMedium?.copyWith(
+                        color: AppColor.primaryColor,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                    Divider(),
+                    const Divider(),
                     ListTile(
-                      title: Text(StringConstants.basicSalary),
-                      trailing: Text('\$${basicSalary.toStringAsFixed(2)}'),
-                    ),
-                    ListTile(
-                      title: Text(StringConstants.houseAllowance),
-                      trailing:
-                          Text('\$${housingAllowance.toStringAsFixed(2)}'),
+                      title: const Text(StringConstants.basicSalary),
+                      trailing: Text('\$${basicSalary.toStringAsFixed(2)}',
+                        style: salaryTextStyle,),
                     ),
                     ListTile(
-                      title: Text(StringConstants.transportAllowance),
-                      trailing:
-                          Text('\$${transportAllowance.toStringAsFixed(2)}'),
+                      title: const Text(StringConstants.houseAllowance),
+                      trailing: Text(
+                        '\$${housingAllowance.toStringAsFixed(2)}',
+                        style: salaryTextStyle,
+                      ),
                     ),
                     ListTile(
-                      title: Text(StringConstants.otherAllowance),
-                      trailing: Text('\$${otherAllowance.toStringAsFixed(2)}'),
+                      title: const Text(StringConstants.transportAllowance),
+                      trailing: Text(
+                        '\$${transportAllowance.toStringAsFixed(2)}',
+                        style:  salaryTextStyle,
+                      ),
                     ),
-                    Divider(),
                     ListTile(
-                      title: Text(
+                      title: const Text(StringConstants.otherAllowance),
+                      trailing: Text('\$${otherAllowance.toStringAsFixed(2)}',
+                        style: salaryTextStyle,),
+                    ),
+                    const Divider(),
+                    ListTile(
+                      title: const Text(
                         StringConstants.totalSalary,
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
                       trailing: Text(
                         '\$${totalSalary.toStringAsFixed(2)}',
-                        style: TextStyle(fontWeight: FontWeight.bold),
+                        style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                            fontWeight: FontWeight.bold
+                        ),
                       ),
+                    ),
+                    const SizedBox(height: 20),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 210),
+                      child: GestureDetector(
+                          onTap: () async {
+                            final pdfFile = await generatePDF(
+                              housingAllowance: housingAllowance,
+                              transportAllowance: transportAllowance,
+                              otherAllowance: otherAllowance,
+                              basicSalary: basicSalary,
+                            );
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => PDFViewScreen(
+                                  path: pdfFile.path,
+                                  onDownloadPressed: () async {
+                                    await _downloadPDF(pdfFile.path);
+                                  },
+                                ),
+                              ),
+                            );
+                          },
+                          child: Text(
+                            StringConstants.viewDetails,
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleLarge
+                                ?.copyWith(color: AppColor.darkPurple),
+                          )),
                     ),
                   ],
                 ),
               ),
-            ),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () async {
-                final pdfFile = await generatePDF(
-                  housingAllowance: housingAllowance,
-                  transportAllowance: transportAllowance,
-                  otherAllowance: otherAllowance,
-                  basicSalary: basicSalary,
-                );
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => PDFViewScreen(path: pdfFile.path),
-                  ),
-                );
-              },
-              child: Text('View Salary Details PDF'),
-            ),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () async {
-                final pdfFile = await generatePDF(
-                  housingAllowance: housingAllowance,
-                  transportAllowance: transportAllowance,
-                  otherAllowance: otherAllowance,
-                  basicSalary: basicSalary,
-                );
-                Share.shareXFiles(
-                  [XFile(pdfFile.path)],
-                  text: 'Salary Slip',
-                );
-              },
-              child: Text('Download Salary Details PDF'),
             ),
           ],
         ),
@@ -136,7 +154,7 @@ class SalaryDetailsScreen extends StatelessWidget {
           children: [
             pw.Text(StringConstants.salaryBreakDown,
                 style:
-                    pw.TextStyle(fontSize: 24, fontWeight: pw.FontWeight.bold)),
+                pw.TextStyle(fontSize: 24, fontWeight: pw.FontWeight.bold)),
             pw.Divider(),
             pw.Text(
                 '${StringConstants.basicSalary}: \$${basicSalary.toStringAsFixed(2)}'),
@@ -159,5 +177,11 @@ class SalaryDetailsScreen extends StatelessWidget {
     final file = File('${output.path}/salary_slip.pdf');
     await file.writeAsBytes(await pdf.save());
     return file;
+  }
+
+  Future<void> _downloadPDF(String filePath) async {
+    final pdfFile = File(filePath);
+    final xFile = XFile(pdfFile.path);
+    await Share.shareXFiles([xFile], text: StringConstants.salarySlip);
   }
 }

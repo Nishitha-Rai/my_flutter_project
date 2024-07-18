@@ -1,4 +1,5 @@
 class StringConstants {
+  static const empty = '';
   static const connectInternet = 'You are Offline. Please connect to internet';
   static const login = 'Login';
   static const emailText = 'Email ID or Mobile Number';
@@ -26,7 +27,7 @@ class StringConstants {
   static const enterOldPassword = 'Please enter old password';
   static const enterNewPassword = 'Please enter new password';
   static const enterConfirmPassword = 'Please confirm your password';
-  static const email = 'Email';
+  static const email = 'Email Address';
   static const loginSuccess = 'Login Successful';
   static const loginError = 'Invalid credentials';
   static const signUpSuccess = 'User Registered Successfully';
@@ -34,7 +35,7 @@ class StringConstants {
   static const haveAccount = 'Already have an account?';
   static const createAccount = "Don't have an account?";
   static const changePassword = 'Change Password';
-  static const oldPasswordIncorrect = 'Current password is incorrect';
+  static const oldPasswordIncorrect = 'Old password is incorrect';
   static const passwordChangeSuccess = 'Password is changed successfully';
   static const employeeLeave = 'Employee Leave Details';
   static const employeeSalary = 'Employee Salary Details';
@@ -71,4 +72,19 @@ class StringConstants {
   static const cancelLeave = 'Cancel Leave';
   static const leaveType = 'Leave Type';
   static const numberOfLeaves = 'Number of Leaves Applied';
+  static const selectLeaveType = 'Select leave type';
+  static const applyForLeave = 'Apply For Leave';
+  static const createAccountText = 'Create an account to get all features';
+  static const signUpText = "Let's Get Started!";
+  static const welcomeText = 'Welcome Back';
+  static const logout = 'Log Out';
+  static const profile = 'Profile';
+  static const menu = 'Menu';
+  static const loginText = 'Login to continue';
+  static const yourProfile = 'Your Profile';
+  static const name = 'Name:';
+  static const empId = 'Employee ID:';
+  static const emailTexts = 'Email:';
+  static const viewDetails = 'View Salary Details';
+  static const title = 'Employee Insight';
 }

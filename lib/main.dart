@@ -30,4 +30,3 @@ class EmployeeInsightApp extends StatelessWidget {
     );
   }
 }
-

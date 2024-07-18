@@ -7,13 +7,22 @@ import 'package:pdf/widgets.dart' as pw;
 
 class PDFViewScreen extends StatelessWidget {
   final String path;
-  const PDFViewScreen({super.key, required this.path});
+  final VoidCallback? onDownloadPressed;
+
+  const PDFViewScreen({Key? key, required this.path, this.onDownloadPressed})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(StringConstants.salarySlip),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.file_download),
+            onPressed: onDownloadPressed,
+          ),
+        ],
       ),
       body: PDFView(
         filePath: path,
@@ -21,6 +30,8 @@ class PDFViewScreen extends StatelessWidget {
     );
   }
 }
+
+
 
 Future<File> generatePDF({
   required double housingAllowance,

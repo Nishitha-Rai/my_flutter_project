@@ -17,7 +17,7 @@ class CustomThemeData {
       canvasColor: AppColor.buttonBackgroundColor,
       highlightColor: AppColor.successGreen,
       buttonTheme:
-          const ButtonThemeData(buttonColor: AppColor.buttonBackgroundColor),
+      const ButtonThemeData(buttonColor: AppColor.buttonBackgroundColor),
       colorScheme: const ColorScheme.light(
         primary: AppColor.primaryColor,
         secondary: AppColor.secondaryColor,
@@ -34,7 +34,7 @@ class CustomThemeData {
         ),
         displayMedium: TextStyle(
             color: AppColor.fontBlackColor,
-            fontSize: 30, //45
+            fontSize: 27, //45
             fontWeight: FontWeight.w600),
         displaySmall: TextStyle(
             color: AppColor.fontBlackColor,
@@ -93,10 +93,10 @@ class CustomThemeData {
         style: ButtonStyle(
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
               RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10.0),
-          )),
+                borderRadius: BorderRadius.circular(10.0),
+              )),
           backgroundColor:
-              MaterialStateProperty.all(AppColor.buttonBackgroundColor),
+          MaterialStateProperty.all(AppColor.buttonBackgroundColor),
         ),
       ),
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
@@ -126,7 +126,7 @@ class CustomThemeData {
             fontWeight: FontWeight.w600),
         displayMedium: TextStyle(
             color: AppColor.colorWhite,
-            fontSize: 30,
+            fontSize: 27,
             fontWeight: FontWeight.w600),
         displaySmall: TextStyle(
             color: AppColor.colorWhite,
@@ -149,8 +149,8 @@ class CustomThemeData {
         style: ButtonStyle(
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
               RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(40.0),
-          )),
+                borderRadius: BorderRadius.circular(40.0),
+              )),
         ),
       ),
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
